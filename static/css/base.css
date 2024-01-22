@@ -1,0 +1,61 @@
+/* ========= Definição de variáveis do css ========= */
+:root {
+    --main-color: rgb(21, 28, 52);
+    --dark-color: rgb(12, 18, 28) ;
+    --light-color: rgb(109, 230, 238);
+    --contrast-color: rgb(244, 201, 107);
+    --differential-color: rgb(6, 102, 104);
+    --input-background: rgb(255, 255, 255, 0.05);
+}
+
+/* ========== Estilização Inicial ========== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+/* Classes body */
+.font-destaque {
+    color: var(--light-color);
+    font-size: 4rem;
+}
+
+.input-default {
+    background-color: var(--input-background);
+    border: 1px solid var(--differential-color);
+    padding: 0.7rem;
+    width: 50%;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.btn-default {
+    background-color: var(--light-color);
+    color: black;
+    font-weight: 800;
+    font-size: 1.5rem;
+    width: 15%;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    transition: 2ms ease-in-out;
+}
+
+.btn-default:hover{
+    border: 0.2rem solid white
+}
+
+.font-destaque-secundaria {
+    color: var(--light-color);
+    font-size: 3.5rem;
+}
+

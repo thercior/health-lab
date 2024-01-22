@@ -1,0 +1,17 @@
+body {
+    background-image: url('/static/img/bg1.png');
+    background-size: cover !important;
+}
+
+p {
+    color: var(--light-color);
+}
+
+.logo {
+    max-width: 14rem;
+}
+
+.name-lab {
+    font-size: 3rem;
+    font-weight: 800;
+}

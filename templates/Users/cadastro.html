@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} - Cadastro de Usuários{% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
+{% endblock head %}
+
+{% block body %}
+    <br>
+    <br>
+    <div class="container">
+        <h3 class="font-destaque">Cadastre-se</h3>
+
+        <div class="row">
+            <div class="col-md-3" style="text-align: center">
+                <img class="logo" src="{% static 'icons/logo.png' %}" alt="">
+                <h2 class="name-lab">HealthLab</h2>
+            </div>
+
+            <div class="col-md-9">
+                <form action="{% url 'Users:cadastro_user' %}" method="POST">
+                    {% csrf_token %}
+                    <label>Primeiro nome</label>
+                    <br>
+                    <input type="text" class="input-default" name="first_name">
+                    <br>
+                    <br>
+                    <label>Último nome</label>
+                    <br>
+                    <input type="text" class="input-default" name="last_name">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Username</label>
+                <br>
+                <input type="text" class="input-default w100" name="username">
+                <br>
+                <br>
+                <label>Senha</label>
+                <br>
+                <input type="password" class="input-default w100" name="password">
+            </div>
+
+            <div class="col-md-4">
+                <label>E-mail</label>
+                <br>
+                <input type="email" class="input-default w100" name="email">
+                <br>
+                <br>
+                <label>Confirmar senha</label>
+                <br>
+                <input type="password" class="input-default w100" name="confirm_password">
+            </div>
+            
+        </div>
+        <br>
+        <input type="submit" class="btn-default" value="Cadastrar">
+    </form>
+    </div>
+{% endblock body %}
