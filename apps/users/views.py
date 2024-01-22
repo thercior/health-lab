@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.messages import constants
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
@@ -15,7 +17,8 @@ def cadastro(request):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         
-        if not password == confirm_password:
+        if password != confirm_password:
+            messages.add_message(request, constants.ERROR, 'As senhas não são iguais!!')
             return redirect('Users:cadastro_user')
         
         if len(password) < 6:
@@ -29,7 +32,7 @@ def cadastro(request):
                 email=email,
                 password=password
             )
-        except:
+        except Exception:
             return redirect('Users:cadastro_user')
     
     return redirect('Users:cadastro_user')

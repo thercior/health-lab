@@ -160,7 +160,7 @@ MEDIA_URL = 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Messages tags for templates
-MESSAGES_TAGS = {
+MESSAGE_TAGS = {
     constants.DEBUG: 'alert-primary',
     constants.ERROR: 'alert-danger',
     constants.WARNING: 'alert-warning',
