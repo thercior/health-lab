@@ -22,6 +22,7 @@ def cadastro(request):
             return redirect('Users:cadastro_user')
         
         if len(password) < 6:
+            messages.add_message(request, constants.ERROR, 'A senha deve ser maior que 6 caracteres')
             return redirect('Users:cadastro_user')
         
         try:
@@ -32,7 +33,10 @@ def cadastro(request):
                 email=email,
                 password=password
             )
-        except Exception:
+            messages.add_message(request, constants.SUCCESS, 'Usuário cadastrado com sucesso!')
+        except Exception as e:
+            error_message = f'Erro ao cadastrar o usuário: {e}'
+            messages.add_message(request, constants.ERROR, error_message)
             return redirect('Users:cadastro_user')
     
     return redirect('Users:cadastro_user')
