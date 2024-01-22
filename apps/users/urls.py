@@ -4,5 +4,6 @@ from users.views import *
 app_name = 'Users'
 
 urlpatterns = [
-    path('cadastro/', cadastro, name='cadastro_user')
+    path('cadastro/', cadastro, name='cadastro_user'),
+    path('login/', logar, name = 'login')
 ]
