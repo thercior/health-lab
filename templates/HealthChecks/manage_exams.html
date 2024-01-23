@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'css/exams.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manage_order.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manage_exam.css' %}" rel="stylesheet">
+{% endblock head %}
+
+
+{% block body %}
+    <br> 
+    <br>
+    <div class="container">
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div class="card card-view">
+            
+            <div class="sub-card">
+                <h3>Exames de sangue</h3>
+                <hr>
+                <br>
+                {% for exam in exams %}
+                    {% if exam.exam.type_health_checks == 'S' %}
+                        <div class="row">
+                            <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                            <div class="col-md">{{ exam.badge_template }}</div>
+                            <div class="col-md"></div>
+                            {% if exam.status == 'F' %}
+                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
+                            {% else %}
+                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
+                            {% endif %}
+                        </div>
+                    
+                    {% endif %}
+                {% endfor %}
+
+
+            </div>
+            <br>
+            <br>
+            <div class="sub-card">
+                <h3>Exames de imagem</h3>
+                <hr>
+                <br>
+                
+                {% for exam in exams %}
+                    {% if exam.exam.type_health_checks == 'I' %}
+                        <div class="row">
+                            <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                            <div class="col-md">{{ exam.badge_template }}</div>
+                            <div class="col-md"></div>
+                            {% if exam.status == 'F' %}
+                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
+                            {% else %}
+                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
+                            {% endif %}
+                        </div>
+                    
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+            <br>
+            <br>
+            <div class="sub-card">
+                <h3>Exames de urina</h3>
+                <hr>
+                <br>
+                
+                {% for exam in exams %}
+                    {% if exam.exam.type_health_checks == 'U' %}
+                        <div class="row">
+                            <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                            <div class="col-md">{{ exam.badge_template }}</div>
+                            <div class="col-md"></div>
+                            {% if exam.status == 'F' %}
+                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
+                            {% else %}
+                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
+                            {% endif %}
+                        </div>
+                    
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+            <br>
+            <br>
+            <div class="sub-card">
+                <h3>Exames de DNA</h3>
+                <hr>
+                <br>
+                
+                {% for exam in exams %}
+                    {% if exam.exam.type_health_checks == 'D' %}
+                        <div class="row">
+                            <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                            <div class="col-md">{{ exam.badge_template }}</div>
+                            <div class="col-md"></div>
+                            {% if exam.status == 'F' %}
+                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
+                            {% else %}
+                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
+                            {% endif %}
+                        </div>
+                    
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+            
+        </div>
+
+    </div>
+
+{% endblock body %}
