@@ -6,6 +6,8 @@ class TypeHealthChecks(models.Model):
     type_choices = (
         ('I', 'Exame de imagem'), 
         ('S', 'Exame de sangue'),
+        ('U', 'Exame de urina'),
+        ('D', 'Exame de DNA'),
     )
     
     name = models.CharField(max_length=50)
