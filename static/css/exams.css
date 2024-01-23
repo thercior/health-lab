@@ -1,0 +1,48 @@
+:root {
+    --purple-components: rgb(131, 143, 255);
+}
+
+body {
+    background-image: url('/static/img/bg2.png');
+    background-size: cover;
+}
+
+.bg-select {
+    background-color: transparent !important;
+    border-color: var(--differential-color);
+}
+
+.card {
+    background-color: rgba(217, 217, 217, .14);
+    color: white !important;
+    padding: 1.5rem;
+}
+
+.previa-preco {
+    float: right;
+    font-weight: bold;
+}
+
+.exams-lista {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.tamanho-2 {
+    width: 50%;
+}
+
+.btn-secundario {
+    background-color: var(--purple-components);
+    color: black;
+    padding: 1rem;
+    font-weight: bold;
+    border: none !important;
+    border-radius: 1rem;
+}
+
+.btn-secundario-outline {
+    background-color: transparent !important;
+    border-color: var(--purple-components);
+    padding: 1rem;
+}
