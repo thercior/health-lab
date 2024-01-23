@@ -24,6 +24,7 @@
                     <th>Data</th>
                     <th>Exames</th>
                     <th>Ação</th>
+                    <th>Status</th>
                 </tr>
 
                 {% for orders in order_exams %}
@@ -38,8 +39,17 @@
                             </select>
                         </td>
                         <td>
-                            <a href=""  class="btn btn-danger {% if not exame.scheduled %} disabled {% endif %}">Cancelar</a>
+                            <a href="{% url 'HealthChecks:order_cancel' orders.id %}"  class="btn btn-danger {% if not orders.scheduled %} disabled {% endif %}">Cancelar</a>
                         </td>
+
+                        <td>
+                            {% if orders.scheduled %}
+                                <span class="status-agendado"><img class="icons-status" src="{% static 'icons/check.png' %}">Agendado</span>
+                            {% else %}
+                                <span class="status-cancelado"><img class="icons-status" src="{% static 'icons/exit.png' %}">Cancelado</span>
+                            {% endif %}
+                        </td>
+                        
                     </tr>
                 {% endfor %}
             </table>

@@ -75,3 +75,17 @@ def manage_order(request):
         template_name='HealthChecks/manage_order.html', 
         context={'order_exams': order_exams}
     )
+
+@login_required
+def order_cancel(request, order_id):
+    order = SchedulingHealthChecks.objects.get(id=order_id)
+    
+    if order.user != request.user:
+        message_denied = 'Permissão negada! Este pedido não é seu'
+        messages.add_message(request, constants.ERROR, message_denied)
+        return redirect('HealthChecks:manage_order')
+    
+    order.scheduled = False
+    order.save()
+    messages.add_message(request, constants.SUCCESS, 'Pedido cancelado com sucesso!')
+    return redirect('HealthChecks:manage_order')
