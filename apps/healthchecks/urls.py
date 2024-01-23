@@ -5,5 +5,6 @@ app_name = 'HealthChecks'
 
 urlpatterns = [
     path('solicitar_exames/', request_exams, name='request_exam'),
-    path('checkout_pedido/', close_order, name='close_order')
+    path('checkout_pedido/', close_order, name='close_order'),
+    path('gerenciar_pedidos/', manage_order, name='manage_order'),
 ]

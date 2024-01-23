@@ -51,5 +51,13 @@ def close_order(request):
     success_message = 'Pedido de exame concluído com sucesso!'
     messages.add_message(request, constants.SUCCESS, success_message)
     
-    return redirect('HealthChecks:see_order')
-    
+    return redirect('HealthChecks:manage_order')
+
+@login_required
+def manage_order(request):
+    order_exams = SchedulingHealthChecks.objects.filter(user=request.user)
+    return render(
+        request=request, 
+        template_name='HealthChecks/manage_order.html', 
+        context={'order_exams': order_exams}
+    )
