@@ -12,8 +12,9 @@ class TypeHealthChecks(models.Model):
     type_health_checks = models.CharField(max_length=1, choices=type_choices)
     price = models.FloatField()
     available = models.BooleanField(default=True)
-    end_time = models.IntegerField()
     start_time = models.IntegerField()
+    end_time = models.IntegerField()
+    
     
     def __str__(self):
         return self.name
