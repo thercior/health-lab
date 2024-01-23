@@ -4,6 +4,7 @@ from django.contrib.messages import constants
 from django.shortcuts import redirect, render
 from healthchecks.models import TypeHealthChecks, SchedulingHealthChecks, RequestHealthChecks
 from datetime import datetime
+import locale
 
 
 @login_required
@@ -14,10 +15,22 @@ def request_exams(request):
         return render(request, 'HealthChecks/request_exams.html', {'type_exams': type_exams})
     
     if request.method == 'POST':
+        # Caputa os dados de exames selecionados
         exams_id = request.POST.getlist('exams')
         request_exams = TypeHealthChecks.objects.filter(id__in=exams_id)
         price_total = 0
         price_total = sum(i.price for i in request_exams if i.available) 
+        
+        # capturar data atual para exibir no template
+        locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8') # Define a região para exibir em pt-BR
+        
+        date_now = datetime.now()
+        day_week = date_now.strftime('%A')
+        day_moth = date_now.day
+        moth = date_now.strftime('%B')
+        year = date_now.year
+        
+        date_display = f'{day_week}, {day_moth} de {moth} de {year}'
         
         return render(
             request=request, 
@@ -25,7 +38,8 @@ def request_exams(request):
             context={
                 'request_exams': request_exams,
                 'price_total': price_total,
-                'type_exams': type_exams
+                'type_exams': type_exams,
+                'date_display': date_display
             }
         )
 
