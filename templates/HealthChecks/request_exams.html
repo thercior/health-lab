@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/exams.css' %}">
+{% endblock head %}
+
+{% block body %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md">
+                <h3 class="font-destaque">Solicitar exames</h3>
+                
+                <form action="{% url 'HealthChecks:request_exam' %}" method="POST">
+                    {% csrf_token %}
+
+                    <label for="">Selecione os exames para realizar</label>
+                    <select class="select form-control bg-select" multiple name="exams">
+                        {% for exam in type_exams %}
+                        <option class="opt" value="{{ exam.id }}">{{ exam }}</option>
+                        {% endfor %}
+                        
+                        
+                    </select>
+                    <br>
+                    <input  type="submit" class="btn-default tamanho-2"  name="ultimo_nome" value="Solicitar exames">
+                </form>
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md card">
+                {% if request_exams %}
+
+                    {% for exam in request_exams %}
+                        <div class="exams-lista" >
+                            {% if exam.available %}
+                                <img src="{% static 'icons/check.png' %}">
+                            {% else %}
+                                <img src="{% static 'icons/exit.png' %}">
+                            {% endif %}
+                            {{ exam.name }}
+                            <span class="previa-preco">
+                                R$ {{ exam.price }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                        
+                
+                    <hr style="color: white;">
+                    <div>
+                        <label>Total: </label><label class="previa-preco">R$ {{ price_total }}</label>
+                    </div>
+                    <br>
+
+                    <h5>Data: 08 de Setembro</h5>
+                    <br>
+
+                    <form action="{% url 'HealthChecks:close_order' %}" method="POST">
+                        {% csrf_token %}
+                        
+                        {% for exam in request_exams %}
+                            <input type="hidden" value="{{ exam.id }}" name="exams">
+                        {% endfor %}
+                        <button class="btn-secundario">Fechar pedido</button>
+                    </form>
+
+            </div>
+                {% else %}
+                <h3 class="exam-none">Nenhum exame foi selecionado.</h3>
+                {% endif %}
+
+        </div>
+    </div>
+{% endblock body %}
