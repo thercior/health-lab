@@ -89,3 +89,24 @@ def order_cancel(request, order_id):
     order.save()
     messages.add_message(request, constants.SUCCESS, 'Pedido cancelado com sucesso!')
     return redirect('HealthChecks:manage_order')
+
+@login_required
+def manage_exams(request):
+    exams = RequestHealthChecks.objects.filter(user=request.user)
+    
+    return render(
+        request=request,
+        template_name='HealthChecks/manage_exams.html',
+        context={'exams': exams},
+    )
+
+@login_required
+def open_exam(request, exam_id):
+    exam = RequestHealthChecks.objects.get(id=exam_id)
+    #validar se o exame é do usuário
+    
+    if not exam.required_password:
+        # Verificar se o pdf existe
+        return redirect('/')
+    else: 
+        return redirect('/')
