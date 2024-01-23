@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 class TypeHealthChecks(models.Model):
@@ -36,6 +37,16 @@ class RequestHealthChecks(models.Model):
     
     def __str__(self):
         return f'{self.user} | {self.exam.name}'
+    
+    def badge_template(self):
+        if self.status == 'E':
+            class_css = 'bg-warning text-dark'
+            text = 'Em análise'
+        elif self.status == 'F':
+            class_css = 'bg-success'
+            text = 'Finalizado'
+            
+        return mark_safe(f'<span class="badge {class_css}">{text}</span>')
 
 class SchedulingHealthChecks(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
