@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages import constants
 from django.shortcuts import redirect, render
 from healthchecks.models import TypeHealthChecks, SchedulingHealthChecks, RequestHealthChecks
-import datetime
+from datetime import datetime
 
 
 @login_required
@@ -51,5 +51,5 @@ def close_order(request):
     success_message = 'Pedido de exame concluído com sucesso!'
     messages.add_message(request, constants.SUCCESS, success_message)
     
-    return redirect('/')
+    return redirect('HealthChecks:see_order')
     
