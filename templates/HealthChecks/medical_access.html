@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'css/exams.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manage_order.css' %}" rel="stylesheet">
+{% endblock head %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <div class="container">
+
+        
+        <table style="">
+            <tr class="title-table">
+                <th>Id</th>
+                <th>Exame</th>
+                
+            </tr>
+            
+            {% for order in orders %}
+                {% for exam in order.exams.all %}
+                    <tr class="linha-tabela">
+                        <td class="name-exam">{{ exam.exam.name }}</td>
+                        
+                        {% if exam.result %}
+                            <td><a href="{{ exam.result.url }}" class="btn-exam btn-secundario" target="_blank">Ver exame</a></td>
+                        {% else %}
+                            <td>Em análise</td>
+                        {% endif %}
+                            
+                        
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+            
+            
+
+        </table>
+    </div>
+{% endblock body %}

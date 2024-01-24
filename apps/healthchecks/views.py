@@ -178,3 +178,19 @@ def create_medical_access(request):
         
         messages.add_message(request, constants.SUCCESS,'Acesso gerado com sucesso!')
         return redirect('HealthChecks:create_medical_access')
+
+def medical_access(request, token):
+    medical_access = MedicalAcess.objects.get(token=token)
+    
+    if medical_access.status == 'Expirado':
+        messages.add_message(request, constants.WARNING, 'Esse link está expirado. Por favor, solicite outro')
+        return redirect('Users:login')
+    
+    orders = SchedulingHealthChecks.objects.filter(user=medical_access.user)
+    orders.filter(date__gte=medical_access.date_start_exams).filter(date__lte=medical_access.date_end_exams)
+        
+    return render(
+        request=request,
+        template_name='HealthChecks/medical_access.html',
+        context={'orders': orders},
+    )

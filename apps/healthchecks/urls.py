@@ -17,4 +17,5 @@ urlpatterns = [
     
     # Rotas - Acesso médico
     path('gerar_acesso_medico/', create_medical_access, name='create_medical_access'),
+    path('acesso_medico/<str:token>', medical_access, name='medical_access'),
 ]
