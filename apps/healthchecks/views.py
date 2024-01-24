@@ -4,7 +4,7 @@ from django.contrib.messages import constants
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from healthchecks.models import TypeHealthChecks, SchedulingHealthChecks, RequestHealthChecks
+from healthchecks.models import TypeHealthChecks, SchedulingHealthChecks, RequestHealthChecks, MedicalAcess
 from datetime import datetime
 import locale
 
@@ -148,4 +148,33 @@ def required_password_exam(request, exam_id):
         else:
             messages.add_message(request, constants.ERROR, 'Senha Inválida!')
             return redirect(reverse('HealthChecks:required_pass_exam', kwargs={'exam_id': exam_id}))
+
+@login_required    
+def create_medical_access(request):
+    if request.method == 'GET':
+        medicals_access = MedicalAcess.objects.filter(user=request.user)
+        return render(
+            request=request,
+            template_name='HealthChecks/create_medical_access.html',
+            context={'medicals_access': medicals_access},
+        )
+    
+    if request.method == 'POST':
+        identification = request.POST.get('identification')
+        access_time = request.POST.get('access_time')
+        date_start_exam = request.POST.get('date_start_exam')
+        date_end_exam = request.POST.get('date_end_exam')
         
+        medical_access = MedicalAcess(
+            user=request.user,
+            identification=identification,
+            access_time=access_time,
+            date_start_exam=date_start_exam,
+            date_end_exam=date_end_exam,
+            created_in=datetime.now(),
+        )
+        
+        medical_access.save()
+        
+        messages.add_message(request, constants.SUCCESS,'Acesso gerado com sucesso!')
+        return redirect('HealthChecks:create_medical_access')
