@@ -21,6 +21,16 @@ html {
     font-size: 62.5%;
 }
 
+label {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.form-control {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
 /* Classes body */
 .font-destaque {
     color: var(--light-color);
