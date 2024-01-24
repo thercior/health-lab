@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.safestring import mark_safe
+from secrets import token_urlsafe
 
 
 class TypeHealthChecks(models.Model):
@@ -56,3 +57,21 @@ class SchedulingHealthChecks(models.Model):
     
     def __str__(self):
         return f'{self.user} | {self.date}'
+
+class MedicalAcess(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    identifications = models.CharField(max_length=50)
+    access_time = models.IntegerField() # em horas
+    created_in = models.DateTimeField()
+    date_start_exams = models.DateField()
+    date_end_exams = models.DateField()
+    token = models.CharField(max_length=20, null=True, blank=True)
+    
+    def __str__(self):
+        return self.token
+    
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.tolen = token_urlsafe(6)
+        super(MedicalAcess, self).save(*args, **kwargs)
+    
