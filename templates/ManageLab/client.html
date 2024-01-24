@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'css/exams.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manage_order.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manage_exam.css' %}" rel="stylesheet">
+{% endblock head %}
+
+
+{% block body %}
+    <br> 
+    <br>
+    <div class="container">
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <h3 class="font-destaque">{{ client.get_full_name }}</h3>
+        <p>{{ client.email }}</p>
+        <div class="card card-view">
+            {% for exam in exams  %}
+                {% if exam.exam %}
+                    <div class="sub-card">
+                        
+                        
+                        {% if  exam.exam.type_health_checks == 'S'%}
+                            <h3>Exames de sangue</h3>
+                            <hr>
+                            <br>
+                            <div class="row">
+                                <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                                <div class="col-md">{{ exam.badge_template }}</div>
+                                <div class="col-md">
+                                    <a href="#" class="btn btn-light">Abrir</a>
+                                </div>
+                            </div>
+                            <br>
+                        {% endif %}
+                    
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub-card">
+                        
+                        {% if  exam.exam.type_health_checks == 'I'%}
+                            <h3>Exames de imagem</h3>
+                            <hr>
+                            <br>
+                            <div class="row">
+                                <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                                <div class="col-md">{{ exam.badge_template }}</div>
+                                <div class="col-md"><a href="#" class="btn btn-light">Abrir</a></div>
+                            </div>
+                            <br>
+                        {% endif %}
+                        
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub-card">
+                        {% if  exam.exam.type_health_checks == 'U'%}
+                            <h3>Exames de urina</h3>
+                            <hr>
+                            <br>
+                            <div class="row">
+                                <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                                <div class="col-md">{{ exam.badge_template }}</div>
+                                <div class="col-md"><a href="#" class="btn btn-light">Abrir</a></div>
+                            </div>
+                            <br>
+                        
+                        {% endif %}
+                    </div>
+                    <br>
+                    <br>
+                    <div class="sub-card">
+                        
+                        {% if  exam.exam.type_health_checks == 'D'%}
+                            <h3>Exames de DNA</h3>
+                            <hr>
+                            <br>                    
+                            <div class="row">
+                                <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
+                                <div class="col-md">{{ exam.badge_template }}</div>
+                                <div class="col-md"><a href="#" class="btn btn-light">Abrir</a></div>
+                            </div>
+                            <br>
+                        {% endif %}
+                        
+                    </div>
+                {% else %}
+                    <h3>Não existe nenhum exame disponível para {{ client.get_full_name }}</h3>
+                {% endif %}
+                
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock body %}
