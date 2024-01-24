@@ -74,12 +74,12 @@ class MedicalAcess(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.token:
-            self.tolen = token_urlsafe(6)
+            self.token = token_urlsafe(6)
         super(MedicalAcess, self).save(*args, **kwargs)
     
     @property # decorador que transforma função/método simples de único retorno em propriedade
     def status(self):
-        return 'Expirado' if timezone.now > (self.created_in + timedelta(hours=self.access_time)) else 'Ativo'
+        return 'Expirado' if timezone.now() > (self.created_in + timedelta(hours=self.access_time)) else 'Ativo'
 
     @property
     def url(self):
