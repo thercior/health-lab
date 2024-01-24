@@ -29,14 +29,21 @@
                         <div class="row">
                             <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                             <div class="col-md">{{ exam.badge_template }}</div>
-                            <div class="col-md"></div>
-                            {% if exam.status == 'F' %}
-                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
-                            {% else %}
-                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
-                            {% endif %}
+                            <div class="col-md">
+                                {% if exam.status == 'F' %}
+                                    {% if exam.result %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info" target="_blank">Abrir</a>
+                                    {% else %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info">Abrir</a>
+                                    {% endif %}
+                                    
+                                {% else %}
+                                    <a href="#" class="btn btn-dark disabled">Abrir</a>
+                                {% endif %}
+                            </div>
+                            
                         </div>
-                    
+                                            
                     {% endif %}
                 {% endfor %}
 
@@ -54,14 +61,20 @@
                         <div class="row">
                             <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                             <div class="col-md">{{ exam.badge_template }}</div>
-                            <div class="col-md"></div>
-                            {% if exam.status == 'F' %}
-                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
-                            {% else %}
-                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
-                            {% endif %}
+                            <div class="col-md">
+                                {% if exam.status == 'F' %}
+                                    {% if exam.result %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info" target="_blank">Abrir</a>
+                                    {% else %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info">Abrir</a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="#" class="btn btn-dark disabled">Abrir</a>
+                                {% endif %}
+                            </div>
+                            
                         </div>
-                    
+
                     {% endif %}
                 {% endfor %}
 
@@ -78,12 +91,18 @@
                         <div class="row">
                             <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                             <div class="col-md">{{ exam.badge_template }}</div>
-                            <div class="col-md"></div>
-                            {% if exam.status == 'F' %}
-                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
-                            {% else %}
-                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
-                            {% endif %}
+                            <div class="col-md">
+                                {% if exam.status == 'F' %}
+                                    {% if exam.result %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info" target="_blank">Abrir</a>
+                                    {% else %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info">Abrir</a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="#" class="btn btn-dark disabled">Abrir</a>
+                                {% endif %}
+                            </div>
+                            
                         </div>
                     
                     {% endif %}
@@ -102,12 +121,18 @@
                         <div class="row">
                             <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                             <div class="col-md">{{ exam.badge_template }}</div>
-                            <div class="col-md"></div>
-                            {% if exam.status == 'F' %}
-                                <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-ligth">Abrir</a>
-                            {% else %}
-                                <a href="#" class="btn btn-ligth disabled">Abrir</a>
-                            {% endif %}
+                            <div class="col-md">
+                                {% if exam.status == 'F' %}
+                                    {% if exam.result %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info" target="_blank">Abrir</a>
+                                    {% else %}
+                                        <a href="{% url 'HealthChecks:open_exam' exam.id %}" class="btn btn-info">Abrir</a>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="#" class="btn btn-dark disabled">Abrir</a>
+                                {% endif %}
+                            </div>
+                            
                         </div>
                     
                     {% endif %}
