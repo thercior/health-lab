@@ -37,3 +37,28 @@ a.btn.btn-danger {
     width: 2.5rem;
     padding: 0.5rem;
 }
+
+.title-table{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.name-exam {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.btn-exam {
+    font-size: 1.2rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    filter: drop-shadow(1.2rem 1.2rem 0.7rem rgba(0, 0, 0, 0.7));
+    transition: border, box-shadow 0.15s ease-in-out;
+}
+
+.btn-exam:hover {
+    text-decoration: underline;
+    background-color: aqua;
+    border: 1.5px solid white;
+    box-shadow: 0 0 1.6rem rgba(255, 255, 255, 0.5);
+}
