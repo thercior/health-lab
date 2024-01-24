@@ -167,10 +167,10 @@ def create_medical_access(request):
         
         medical_access = MedicalAcess(
             user=request.user,
-            identification=identification,
+            identifications=identification,
             access_time=access_time,
-            date_start_exam=date_start_exam,
-            date_end_exam=date_end_exam,
+            date_start_exams=date_start_exam,
+            date_end_exams=date_end_exam,
             created_in=datetime.now(),
         )
         
