@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import constants
+from django.http import Http404
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from healthchecks.models import TypeHealthChecks, SchedulingHealthChecks, RequestHealthChecks
 from datetime import datetime
 import locale
@@ -102,11 +104,48 @@ def manage_exams(request):
 
 @login_required
 def open_exam(request, exam_id):
-    exam = RequestHealthChecks.objects.get(id=exam_id)
-    #validar se o exame é do usuário
+    try:
+        exam = RequestHealthChecks.objects.get(id=exam_id)
+    except RequestHealthChecks.DoesNotExist:
+        raise Http404('Exame não encontrado')
     
-    if not exam.required_password:
-        # Verificar se o pdf existe
-        return redirect('/')
-    else: 
-        return redirect('/')
+    #validar se o exame é do usuário
+    if exam.user != request.user:
+        messages.add_message(request, constants.WARNING, 'Atenção! Este exame não percente ao usuário atual')
+        return redirect('HealthChecks:manage_exam')
+    
+    # Verifica se o pdf existe
+    if exam.result:
+            
+        if not exam.required_password:
+            return redirect(exam.result.url)
+        else: 
+            return redirect(reverse('HealthChecks:required_pass_exam', kwargs={'exam_id': exam_id}))
+        
+    message_alert = 'Não foi encontrado o resultado do exame. Por favor, entrar em contato com a HealthLAB.'
+    messages.add_message(request, constants.WARNING, message_alert)
+    return redirect('HealthChecks:manage_exam')
+
+@login_required
+def required_password_exam(request, exam_id):
+    exam = RequestHealthChecks.objects.get(id=exam_id)
+    
+    if request.method == 'GET':
+        return render(
+            request=request,
+            template_name='HealthChecks/required_pass_exams.html',
+            context={"exam": exam}
+        )
+    
+    if request.method == 'POST':
+        password = request.POST.get('password')
+        
+        if exam.user != request.user:
+            messages.add_message(request, constants.WARNING, 'Atenção! Este exame não percente ao usuário atual')
+        
+        if password == exam.password and exam.result:
+            return redirect(exam.result.url)
+        else:
+            messages.add_message(request, constants.ERROR, 'Senha Inválida!')
+            return redirect(reverse('HealthChecks:required_pass_exam', kwargs={'exam_id': exam_id}))
+        
