@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 from django.utils.safestring import mark_safe
 from secrets import token_urlsafe
+from datetime import timedelta
 
 
 class TypeHealthChecks(models.Model):
@@ -75,3 +77,10 @@ class MedicalAcess(models.Model):
             self.tolen = token_urlsafe(6)
         super(MedicalAcess, self).save(*args, **kwargs)
     
+    @property # decorador que transforma função/método simples de único retorno em propriedade
+    def status(self):
+        return 'Expirado' if timezone.now > (self.created_in + timedelta(hours=self.access_time)) else 'Ativo'
+
+    @property
+    def url(self):
+        return f'http://127.0.0.1:8000/exames/acesso_medico/{self.token}'
