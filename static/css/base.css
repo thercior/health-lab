@@ -26,6 +26,16 @@ label {
     font-weight: bold;
 }
 
+footer {
+    margin: auto;
+    padding: auto;
+}
+
+.container {
+    /* max-width: 192rem; */
+    padding: 0 2rem;
+}
+
 .form-control {
     font-size: 1.4rem;
     font-weight: 600;
