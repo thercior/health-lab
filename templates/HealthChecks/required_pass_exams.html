@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'css/exams.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manage_order.css' %}" rel="stylesheet">
+    <link href="{% static 'css/manage_exam.css' %}" rel="stylesheet">
+{% endblock head %}
+
+
+{% block body %}
+    <br><br>
+    
+    <div class="container">
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <h3 class="exam">{{exam.exam.name}}</h3>
+        <br>
+        <form action="{% url 'HealthChecks:required_pass_exam' exam.id %}" method="POST">
+            {% csrf_token %}
+            
+            <label>Senha de acesso</label>
+            <br>
+            <input type="text" name="password" class="form-control" style="width: 40%">
+            <br>
+
+            <input type="submit" value="Abrir" class="btn-open">
+            
+        </form>
+        
+    </div>
+
+{% endblock body %}
