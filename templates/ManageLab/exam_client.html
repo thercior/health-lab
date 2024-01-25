@@ -31,7 +31,7 @@
                     <br>
                     <br>
                     {% if exam.result %}
-                        <a style="width: 100%;" href="" target="__blank"><div  style="width: 100%;" id="pdf-container" data-exam-id="{{exam.id}}"></div></a>
+                        <a style="width: 100%;" href="{{ exam.result.url }}" target="__blank"><div  style="width: 100%;" id="pdf-container" data-exam-id="{{exam.id}}"></div></a>
                     {% else %}
                         <span>Este cliente não possui nenhum exame no momento</span>
                     {% endif %}
