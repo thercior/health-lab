@@ -70,7 +70,7 @@ def generate_pass(request, exam_id):
         # Baixar documento da senha já existente
         return FileResponse(pdf_pass_exams(exam.exam.name, exam.user, exam.password), filename='token.pdf')
     
-    exam.password = random_pass_generate(8)
+    exam.password = random_pass_generate(6)
     exam.save()
     
     return FileResponse(pdf_pass_exams(exam.exam.name, exam.user, exam.password), filename='token.pdf')
