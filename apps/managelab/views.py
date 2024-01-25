@@ -5,6 +5,7 @@ from django.db.models.functions import Concat
 from django.http import FileResponse
 from django.shortcuts import render
 from healthchecks.models import RequestHealthChecks
+from managelab.utils import pdf_pass_exams, random_pass_generate
 
 
 @staff_member_required
@@ -60,3 +61,17 @@ def proxy_pdf(request, exam_id):
     exam = RequestHealthChecks.objects.get(id=exam_id)
     response = exam.result.open()
     return FileResponse(response)
+
+@staff_member_required
+def generate_pass(request, exam_id):
+    exam = RequestHealthChecks.objects.get(id=exam_id)
+    
+    if exam.password:
+        # Baixar documento da senha já existente
+        return FileResponse(pdf_pass_exams(exam.exam.name, exam.user, exam.password), filename='token.pdf')
+    
+    exam.password = random_pass_generate(8)
+    exam.save()
+    
+    return FileResponse(pdf_pass_exams(exam.exam.name, exam.user, exam.password), filename='token.pdf')
+    
