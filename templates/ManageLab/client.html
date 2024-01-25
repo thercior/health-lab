@@ -34,7 +34,7 @@
                                 <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                                 <div class="col-md">{{ exam.badge_template }}</div>
                                 <div class="col-md">
-                                    <a href="#" class="btn btn-light">Abrir</a>
+                                    <a href="{% url 'ManageLab:exam_client' exam.id %}" class="btn btn-light">Abrir</a>
                                 </div>
                             </div>
                             <br>
@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                                 <div class="col-md">{{ exam.badge_template }}</div>
-                                <div class="col-md"><a href="#" class="btn btn-light">Abrir</a></div>
+                                <div class="col-md"><a href="{% url 'ManageLab:exam_client' exam.id %}" class="btn btn-light">Abrir</a></div>
                             </div>
                             <br>
                         {% endif %}
@@ -68,7 +68,7 @@
                             <div class="row">
                                 <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                                 <div class="col-md">{{ exam.badge_template }}</div>
-                                <div class="col-md"><a href="#" class="btn btn-light">Abrir</a></div>
+                                <div class="col-md"><a href="{% url 'ManageLab:exam_client' exam.id %}" class="btn btn-light">Abrir</a></div>
                             </div>
                             <br>
                         
@@ -85,7 +85,7 @@
                             <div class="row">
                                 <div class="col-md"><h3>{{ exam.exam.name }}</h3></div>
                                 <div class="col-md">{{ exam.badge_template }}</div>
-                                <div class="col-md"><a href="#" class="btn btn-light">Abrir</a></div>
+                                <div class="col-md"><a href="{% url 'ManageLab:exam_client' exam.id %}" class="btn btn-light">Abrir</a></div>
                             </div>
                             <br>
                         {% endif %}

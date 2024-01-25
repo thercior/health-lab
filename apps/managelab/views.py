@@ -2,6 +2,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.db.models import Value
 from django.db.models.functions import Concat
+from django.http import FileResponse
 from django.shortcuts import render
 from healthchecks.models import RequestHealthChecks
 
@@ -43,4 +44,19 @@ def client(request, client_id):
             'exams': exams
         }
     )
+
+@staff_member_required
+def exam_client(request, exam_id):
+    exam = RequestHealthChecks.objects.get(id=exam_id)
     
+    return render(
+        request=request,
+        template_name='ManageLab/exam_client.html',
+        context={'exam': exam}
+    )
+
+@staff_member_required
+def proxy_pdf(request, exam_id):
+    exam = RequestHealthChecks.objects.get(id=exam_id)
+    response = exam.result.open()
+    return FileResponse(response)

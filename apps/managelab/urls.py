@@ -5,5 +5,7 @@ app_name = 'ManageLab'
 
 urlpatterns = [
     path('gerenciar_clientes/', manage_clients, name='manage_clients'),
-    path('clients/<int:client_id>', client, name='client'),
+    path('clientes/<int:client_id>', client, name='client'),
+    path('exame_cliente/<int:exam_id>', exam_client, name='exam_client'),
+    path('proxy_pdf/<int:exam_id>', proxy_pdf, name='proxy_pdf'),
 ]
