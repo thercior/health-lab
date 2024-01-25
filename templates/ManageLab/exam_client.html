@@ -50,7 +50,7 @@
 
                 <input type="submit" value="Salvar" class="btn-default">
                 </form>
-                <a style="text-decoration: none;" href="" class="btn-secundario">Gerar senha</a>
+                <a style="text-decoration: none;" href="{% url 'ManageLab:generate_pass' exam.id %}" class="btn-secundario" target="_blank">Gerar senha</a>
             </div>
         </div>
         
