@@ -6,6 +6,8 @@
     --contrast-color: rgb(244, 201, 107);
     --differential-color: rgb(6, 102, 104);
     --input-background: rgb(255, 255, 255, 0.05);
+    --footer-background: rgba(217, 217, 217, .14);
+    --footer-text: rgba(255, 255, 255, 0.61);
 }
 
 /* ========== Estilização Inicial ========== */
@@ -21,11 +23,30 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    padding-top: 6rem; 
+}
+
+main .corpo {
+    position: relative;
+}
+
+/* .container {
+    max-width: 192rem;
+    padding: 0 2rem;
+    margin: 2rem;
+} */
+
+.container-fluid {
+    max-width: 192rem;
+    margin: 0 auto;
+}
+
 nav {
     background-color: var(--dark-color);
     font-size: 1.6rem;
     display: inline-block;
-    
+    position: absolute;
 }
 
 .dropdown-menu {
@@ -34,17 +55,23 @@ nav {
 }
 
 nav ul li {
-    list-style-type: none;
+    color: white;
 }
 
-nav ul li a {
+#ConteudoNavbar ul li a {
     margin: 0.5rem;
     padding: 0.5rem;
+    color: white;
     transition: 0.15s ease-in-out;
 }
 
-nav ul li a:hover {
+#ConteudoNavbar ul li a:hover {
     background-color: var(--differential-color);
+}
+
+.icon-user {
+    font-size: 2rem;
+    padding: 0.5rem;
 }
 
 label {
@@ -53,13 +80,31 @@ label {
 }
 
 footer {
-    margin: auto;
-    padding: auto;
+    /* padding: 2rem; */
+    width: 100%;
+    background-color: var(--footer-background);
+    color: var(--footer-text) !important;
+    display: flex;
+    float: bottom;
 }
 
-.container {
-    /* max-width: 192rem; */
-    padding: 0 2rem;
+footer .container {
+    width: 100%;
+}
+
+
+footer .caixa {
+    margin: 0.5rem 0;
+    padding: 0rem 0;
+    display: flex;
+}
+
+footer .text-footer {
+    /* margin: auto; */
+    padding: 5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
 }
 
 .form-control {
