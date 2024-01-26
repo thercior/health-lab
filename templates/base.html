@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="{% static 'icons/logo.png' %}" type="image/png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
         {% block head %}{% endblock head %}
     </head>
@@ -18,7 +19,77 @@
             {% block header %}
                 
             {% endblock header %}
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="ConteudoNavBar">
+                    {% if user.is_authenticated %}
+                        
+                        {% if user.is_staff %}
+                            
+                            <ul class="navbar me-auto mb-2 mb-lg-0">
+                                <li class="nav-item"><a href="" aria-current="pagina" class="nav-link active">Home</a></li>
+                                <li class="nav-item"><a href="{% url 'ManageLab:manage_clients' %}" aria-current="pagina" class="nav-link active">Clientes</a></li>
+                                <li class="nav-item"><a href="{% url 'HealthChecks:manage_exam' %}" class="nav-link active">Exames</a></li>
+                                <li class="nav-item"><a href="{% url 'HealthChecks:create_medical_access' %}" class="nav-link active">Acesso Médico</a></li>
+                                                                
+                            </ul>
+                                    
+                        {% else %}
+                            
+                            <ul class="navbar me-auto mb-2 mb-lg-0">
+                                <li class="nav-item"><a href="" aria-current="pagina" class="nav-link active">Home</a></li>
+                                <li class="nav-item"><a href="{% url 'HealthChecks:manage_order' %}" aria-current="pagina" class="nav-link active">Meus Pedidos</a></li>
+                                <li class="nav-item"><a href="{% url 'HealthChecks:request_exam' %}" aria-current="pagina" class="nav-link active">Solicitações</a></li>
+                                <li class="nav-item"><a href="{% url 'HealthChecks:manage_exam' %}" aria-current="pagina" class="nav-link active">Meus exames</a></li>
+                                
+                                                                    
+                            </ul>
+
+                            
+                                    
+                        {% endif %}
+
+                            <ul class="navbar mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a href="" class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                                        <i class="icon-user bi bi-person-circle"></i>{{ user.username }}
+                                    </a>
+                                
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="" class="dropdown-item">
+                                                <i class="icon-user bi bi-person-fill-check"></i> Bem vindo, {{ user.first_name }} {{ user.last_name }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'Users:cadastro_user' %}" class="dropdown-item">
+                                                <i class="icon-user bi bi-person-fill-add"></i> Cadastrar usuário
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'Users:logout' %}" class="dropdown-item">
+                                                <i class="icon-user bi bi-person-fill-x"></i> Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                
+                                </li>
+                            </ul>
+                        
+                    {% else %}
+                        
+                        <ul class="navbar me-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a href="" aria-current="pagina" class="nav-link active">Home</a></li>
+                            <li class="nav-item"><a href="{% url 'Users:cadastro_user' %}" aria-current="pagina" class="nav-link active">Cadastre-se</a></li>
+                            <li class="nav-item"><a href="{% url 'Users:login' %}" aria-current="pagina" class="nav-link active"><i class="bi bi-person-fill fa-solid fa-user">Login</a></li>
+
+                        </ul>
+
+                    {% endif %}
             
+                    </div>
+                </div>
+            </nav>
         </header>
         <main>
             {% block body %}
