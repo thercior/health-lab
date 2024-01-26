@@ -27,16 +27,23 @@
 
                 <label>Username</label>
                 <br>
-                <input type="text" class="input-default" name="username">
+                <input type="text" class="input-login input-default" name="username">
                 <br>
                 <br>
                 <label>Senha</label>
                 <br>
-                <input type="password" class="input-default" name="password">
+                <input type="password" class="input-field input-login input-default" name="password">
+                <button type="button" class="senha-vis" id="show-password-checkbox">
+                    <i class="fa-solid fa-eye fa-sm" id="show-password-icon"></i>
+                </button>
                 <br>
                 <br>
                 <input type="submit" class="btn-default" value="Logar">
             </form>
         </div>
     </div>
+
+    {% block script %}
+        <script src="{% static 'js/senhaVis.js' %}"></script>
+    {% endblock script %}
 {% endblock body %}

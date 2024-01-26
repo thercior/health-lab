@@ -15,3 +15,24 @@ p {
     font-size: 3rem;
     font-weight: 800;
 }
+
+.input-login {
+    width: 25%;
+}
+
+.senha-vis {
+    /* background-color: transparent; */
+    color: var(--light-color);
+    border: none;
+}
+
+.senha-vis span {
+    padding-left: 0.5rem;
+}
+
+.senha-vis #show-paswword-checkbox:checked + span {
+    font-size: 1000;
+    color: red;
+}
+
+

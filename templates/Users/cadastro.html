@@ -30,12 +30,12 @@
                     {% csrf_token %}
                     <label>Primeiro nome</label>
                     <br>
-                    <input type="text" class="input-default" name="first_name">
+                    <input tabindex="3" type="text" class="input-default" name="first_name">
                     <br>
                     <br>
                     <label>Último nome</label>
                     <br>
-                    <input type="text" class="input-default" name="last_name">
+                    <input tabindex="4" type="text" class="input-default" name="last_name">
             </div>
         </div>
 
@@ -43,28 +43,28 @@
             <div class="col-md-4">
                 <label>Username</label>
                 <br>
-                <input type="text" class="input-default w100" name="username">
+                <input tabindex="5" type="text" class="input-default w100" name="username">
                 <br>
                 <br>
                 <label>Senha</label>
                 <br>
-                <input type="password" class="input-default w100" name="password">
+                <input tabindex="7" type="password" class="input-default w100" name="password">
             </div>
 
             <div class="col-md-4">
                 <label>E-mail</label>
                 <br>
-                <input type="email" class="input-default w100" name="email">
+                <input tabindex="6" type="email" class="input-default w100" name="email">
                 <br>
                 <br>
                 <label>Confirmar senha</label>
                 <br>
-                <input type="password" class="input-default w100" name="confirm_password">
+                <input tabindex="8" type="password" class="input-default w100" name="confirm_password">
             </div>
             
         </div>
         <br>
-        <input type="submit" class="btn-default" value="Cadastrar">
+        <input tabindex="9" type="submit" class="btn-default" value="Cadastrar">
     </form>
     </div>
 {% endblock body %}
