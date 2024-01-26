@@ -4,9 +4,8 @@ from import_export.admin import ImportExportMixin
 
 @admin.register(TypeHealthChecks)
 class TypeHealthChecksAdmin(ImportExportMixin, admin.ModelAdmin):
-    list_display = ('available', 'name', 'type_health_checks', 'price', )
+    list_display = ('name', 'available', 'type_health_checks', 'price', )
     
-
 @admin.register(RequestHealthChecks)
 class RequestHealthChecksAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('user', 'exam', 'status', 'required_password', 'result')
