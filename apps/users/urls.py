@@ -5,5 +5,6 @@ app_name = 'Users'
 
 urlpatterns = [
     path('cadastro/', cadastro, name='cadastro_user'),
-    path('login/', logar, name = 'login')
+    path('login/', logar, name = 'login'),
+    path('logout/', logout_view, name='logout'),
 ]

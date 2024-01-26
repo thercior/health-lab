@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -61,3 +61,8 @@ def logar(request):
             error_message = 'Usuário ou senha inválidos. Por favor, verifique e tente novamente'
             messages.add_message(request, constants.ERROR, error_message)
             return redirect('Users:login')
+
+def logout_view(request):
+    logout(request)
+    
+    return redirect('Users:login')
