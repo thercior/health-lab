@@ -78,6 +78,7 @@ def generate_pass(request, exam_id):
     
     return FileResponse(pdf_pass_exams(exam.exam.name, exam.user, exam.password), filename='token.pdf')
 
+@staff_member_required
 def alter_data_exam(request, exam_id):
     exam = RequestHealthChecks.objects.get(id=exam_id)
     pdf = request.FILES.get('result')

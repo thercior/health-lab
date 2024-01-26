@@ -56,7 +56,7 @@ def logar(request):
         
         if user:
             login(request, user)
-            return redirect('/')
+            return redirect('HealthChecks:manage_exam')
         else:
             error_message = 'Usuário ou senha inválidos. Por favor, verifique e tente novamente'
             messages.add_message(request, constants.ERROR, error_message)

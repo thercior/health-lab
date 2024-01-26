@@ -11,7 +11,7 @@
 {% block body %}
     <div class="container">
 
-        <h3 class="font-destaque-secundaria"> <img width="10%" src="{% static 'icons/logo.png' %}" alt="">Cadastre-se</h3>
+        <h3 class="font-destaque-secundaria"> <img width="10%" src="{% static 'icons/logo.png' %}" alt="">Faça seu Login</h3>
 
         {% if messages %}
             <br>
@@ -32,7 +32,7 @@
                 <br>
                 <label>Senha</label>
                 <br>
-                <input type="text" class="input-default" name="password">
+                <input type="password" class="input-default" name="password">
                 <br>
                 <br>
                 <input type="submit" class="btn-default" value="Logar">
