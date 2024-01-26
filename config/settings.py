@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.healthchecks',
     'apps.managelab',
+    'import_export',
 ]
 
 MIDDLEWARE = [
