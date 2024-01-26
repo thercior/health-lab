@@ -7,3 +7,4 @@ sqlparse==0.4.4
 tzdata==2023.4
 weasyprint==60.2
 django-jazzmin==2.6.0
+django-import-export==3.3.6
