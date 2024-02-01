@@ -53,7 +53,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'jazzmin',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -189,7 +189,10 @@ JAZZMIN_SETTINGS = {
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 
     "search_model": ["auth.User", "auth.Group"],
-    
+    #Icons
+    "icons": {
+        "registrations.RequestHealthChecks": "fa fa-tags",
+    },
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": "../static/icons/logo.png",
     
